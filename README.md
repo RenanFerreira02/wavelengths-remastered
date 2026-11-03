@@ -2,9 +2,12 @@
 
 Projeto de aula da Fase 2 do portfólio (JavaScript puro). É o Wavelengths da Fase 1 de volta: os dados dos álbuns saem do HTML e passam a vir de um `albums.json`, e as animações ganham GSAP. Cada etapa é um commit, para ser usado em aula.
 
-## Como abrir
+## Como rodar
 
-Não precisa instalar nada: abra o arquivo `index.html` no navegador.
+A página lê o `albums.json` com `fetch`, e o navegador não deixa o `fetch` ler arquivos abertos direto do disco (endereço começando com `file://`). Por isso ela precisa de um servidor local. Duas formas:
+
+- No VS Code, instale a extensão Live Server, clique com o botão direito no `index.html` e escolha "Open with Live Server".
+- No terminal, dentro da pasta do projeto, rode `python -m http.server` e abra `http://localhost:8000`.
 
 Para ver o projeto como ele estava em uma etapa, use `git log --oneline` e depois `git checkout <hash>`. Para voltar ao fim do projeto, `git switch main`.
 
@@ -13,6 +16,7 @@ Para ver o projeto como ele estava em uma etapa, use `git log --oneline` e depoi
 - `00-ponto-de-partida`: README, .gitignore, LICENSE e o esqueleto do `index.html`.
 - `01-pagina-da-fase-1`: a página do Wavelengths em HTML e CSS, com os 8 álbuns ainda escritos no HTML e a barra de filtro, sem JavaScript.
 - `02-dados-em-json`: os dados dos 8 álbuns no `albums.json`, que a página ainda não usa.
+- `03-lendo-com-fetch`: `script.js` com `defer`, `fetch`, `async`/`await` e `response.json()`, e o servidor local.
 
 ## Créditos das capas
 
