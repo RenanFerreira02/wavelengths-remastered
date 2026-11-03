@@ -2,6 +2,7 @@
 
 const albumList = document.querySelector('.album-list');
 const albumTemplate = document.querySelector('#album-template');
+const carousel = document.querySelector('.carousel');
 
 // Cria um <li> para cada texto da lista e coloca dentro da <ul>
 const fillList = (list, items) => {
@@ -44,6 +45,17 @@ const createAlbum = (album, index) => {
   albumList.append(section);
 };
 
+// Cria a capa pequena do carrossel. Ela repete a capa do álbum e é só
+// decoração, então o alt fica vazio
+const createHeroCover = (album) => {
+  const image = document.createElement('img');
+  image.src = album.cover;
+  image.alt = '';
+  image.width = 120;
+  image.height = 120;
+  carousel.append(image);
+};
+
 // async permite usar await: a função espera cada resposta sem travar a página
 const loadAlbums = async () => {
   // fetch pede o arquivo; a resposta chega depois, por isso o await
@@ -53,6 +65,7 @@ const loadAlbums = async () => {
   // forEach chama a função uma vez para cada álbum, passando o álbum e a posição
   albums.forEach((album, index) => {
     createAlbum(album, index);
+    createHeroCover(album);
   });
 };
 

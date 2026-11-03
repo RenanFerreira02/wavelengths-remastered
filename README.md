@@ -21,6 +21,7 @@ Para ver o projeto como ele estava em uma etapa, use `git log --oneline` e depoi
 - `05-um-album-por-item`: `forEach` monta os 8 álbuns; número com `padStart` e lado da capa com `index % 2`.
 - `06-listas-dentro-do-album`: gêneros e clima com `createElement('li')`, um `forEach` dentro do outro.
 - `07-cor-de-cada-album`: `style.setProperty` põe o `accentColor` do JSON na variável `--color-accent`.
+- `08-capas-do-hero`: as capas do carrossel também vêm do JSON.
 
 ## Créditos das capas
 
