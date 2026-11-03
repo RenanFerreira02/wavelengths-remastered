@@ -3,6 +3,8 @@
 const albumList = document.querySelector('.album-list');
 const albumTemplate = document.querySelector('#album-template');
 const carousel = document.querySelector('.carousel');
+const loadError = document.querySelector('.load-error');
+const filterStatus = document.querySelector('.filter-status');
 
 // Cria um <li> para cada texto da lista e coloca dentro da <ul>
 const fillList = (list, items) => {
@@ -58,15 +60,29 @@ const createHeroCover = (album) => {
 
 // async permite usar await: a função espera cada resposta sem travar a página
 const loadAlbums = async () => {
-  // fetch pede o arquivo; a resposta chega depois, por isso o await
-  const response = await fetch('albums.json');
-  // json() lê o texto da resposta e transforma em lista de objetos do JavaScript
-  const albums = await response.json();
-  // forEach chama a função uma vez para cada álbum, passando o álbum e a posição
-  albums.forEach((album, index) => {
-    createAlbum(album, index);
-    createHeroCover(album);
-  });
+  // try: tenta fazer tudo; se alguma linha der erro, o JavaScript pula para o catch
+  try {
+    // fetch pede o arquivo; a resposta chega depois, por isso o await
+    const response = await fetch('albums.json');
+
+    // response.ok é false quando o servidor responde com erro (404 se o arquivo não existe)
+    if (!response.ok) {
+      throw new Error(`O albums.json respondeu com o status ${response.status}`);
+    }
+
+    // json() lê o texto da resposta e transforma em lista de objetos do JavaScript
+    const albums = await response.json();
+    // forEach chama a função uma vez para cada álbum, passando o álbum e a posição
+    albums.forEach((album, index) => {
+      createAlbum(album, index);
+      createHeroCover(album);
+    });
+  } catch (error) {
+    // O erro continua no console para quem programa; na tela, a mensagem do design
+    console.error(error);
+    loadError.hidden = false;
+    filterStatus.textContent = 'Nenhum álbum carregado';
+  }
 };
 
 loadAlbums();

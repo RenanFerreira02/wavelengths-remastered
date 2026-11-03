@@ -59,6 +59,14 @@
     <!-- Os álbuns ficam juntos nesta div, que o JavaScript preenche -->
     <div class="album-list"></div>
 
+    <!-- Mensagem de erro: começa escondida (hidden) e só aparece se o albums.json não abrir.
+         role="alert" faz o leitor de tela ler a mensagem assim que ela aparece. -->
+    <section class="load-error" role="alert" hidden>
+      <p class="load-error-label">Ops</p>
+      <h2>Não deu para carregar os álbuns</h2>
+      <p>O arquivo albums.json não abriu. Se você abriu o index.html direto do computador, rode a página por um servidor local (no VS Code, a extensão Live Server).</p>
+    </section>
+
     <!-- O template não aparece na página: é o molde que o JavaScript copia para cada álbum -->
     <template id="album-template">
       <section class="album">

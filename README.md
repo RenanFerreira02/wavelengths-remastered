@@ -22,6 +22,7 @@ Para ver o projeto como ele estava em uma etapa, use `git log --oneline` e depoi
 - `06-listas-dentro-do-album`: gêneros e clima com `createElement('li')`, um `forEach` dentro do outro.
 - `07-cor-de-cada-album`: `style.setProperty` põe o `accentColor` do JSON na variável `--color-accent`.
 - `08-capas-do-hero`: as capas do carrossel também vêm do JSON.
+- `09-erro-ao-carregar`: `try`/`catch` e `response.ok` mostram uma mensagem quando o `albums.json` não abre.
 
 ## Créditos das capas
 
