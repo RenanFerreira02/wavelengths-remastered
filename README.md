@@ -12,6 +12,7 @@ Para ver o projeto como ele estava em uma etapa, use `git log --oneline` e depoi
 
 - `00-ponto-de-partida`: README, .gitignore, LICENSE e o esqueleto do `index.html`.
 - `01-pagina-da-fase-1`: a página do Wavelengths em HTML e CSS, com os 8 álbuns ainda escritos no HTML e a barra de filtro, sem JavaScript.
+- `02-dados-em-json`: os dados dos 8 álbuns no `albums.json`, que a página ainda não usa.
 
 ## Créditos das capas
 
