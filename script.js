@@ -3,6 +3,15 @@
 const albumList = document.querySelector('.album-list');
 const albumTemplate = document.querySelector('#album-template');
 
+// Cria um <li> para cada texto da lista e coloca dentro da <ul>
+const fillList = (list, items) => {
+  items.forEach((item) => {
+    const listItem = document.createElement('li');
+    listItem.textContent = item;
+    list.append(listItem);
+  });
+};
+
 // Copia o molde do template e preenche com os dados de um álbum.
 // index é a posição do álbum na lista: 0 para o primeiro, 1 para o segundo...
 const createAlbum = (album, index) => {
@@ -18,11 +27,13 @@ const createAlbum = (album, index) => {
   // textContent põe o texto como texto, nunca como HTML
   section.querySelector('.album-title').textContent = album.title;
   section.querySelector('.album-artist').textContent = `${album.artist} · ${album.year}`;
+  fillList(section.querySelector('.album-genres'), album.genres);
   section.querySelector('.album-summary').textContent = album.summary;
   section.querySelector('.album-description').textContent = album.description;
+  fillList(section.querySelector('.album-mood'), album.mood);
   section.querySelector('.album-favorite strong').textContent = album.favoriteTrack;
 
-  // Os álbuns de posição ímpar (o 2º, o 4º...) ficam com a capa à direita
+  // index ímpar (o 2º, o 4º, o 6º...) deixa a capa à direita
   if (index % 2 === 1) {
     section.classList.add('album-reverse');
   }
