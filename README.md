@@ -17,6 +17,7 @@ Para ver o projeto como ele estava em uma etapa, use `git log --oneline` e depoi
 - `01-pagina-da-fase-1`: a página do Wavelengths em HTML e CSS, com os 8 álbuns ainda escritos no HTML e a barra de filtro, sem JavaScript.
 - `02-dados-em-json`: os dados dos 8 álbuns no `albums.json`, que a página ainda não usa.
 - `03-lendo-com-fetch`: `script.js` com `defer`, `fetch`, `async`/`await` e `response.json()`, e o servidor local.
+- `04-template-do-album`: `<template>`, `cloneNode` e `textContent` montam o primeiro álbum a partir do JSON.
 
 ## Créditos das capas
 
