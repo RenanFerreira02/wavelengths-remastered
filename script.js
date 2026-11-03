@@ -43,11 +43,6 @@ const createAlbum = (album, index) => {
   // A cor do álbum vai para a variável CSS --color-accent, que o style.css já usa
   section.style.setProperty('--color-accent', album.accentColor);
 
-  // index ímpar (o 2º, o 4º, o 6º...) deixa a capa à direita
-  if (index % 2 === 1) {
-    section.classList.add('album-reverse');
-  }
-
   // Guarda a section no próprio álbum, para o filtro achar depois
   album.element = section;
   albumList.append(section);
@@ -61,6 +56,12 @@ const showGenre = (genre) => {
   // hidden esconde a section; includes diz se o álbum está entre os visíveis
   albums.forEach((album) => {
     album.element.hidden = !visibleAlbums.includes(album);
+  });
+
+  // O lado da capa alterna entre os visíveis: index ímpar (o 2º, o 4º...) fica à direita.
+  // toggle com true adiciona a classe; com false, tira.
+  visibleAlbums.forEach((album, index) => {
+    album.element.classList.toggle('album-reverse', index % 2 === 1);
   });
 
   filterStatus.textContent = `Mostrando ${visibleAlbums.length} de ${albums.length} álbuns`;
@@ -96,6 +97,8 @@ const loadAlbums = async () => {
       createAlbum(album, index);
       createHeroCover(album);
     });
+    // Com todos os álbuns visíveis, showGenre alterna os lados e escreve a contagem
+    showGenre('Todos');
   } catch (error) {
     // O erro continua no console para quem programa; na tela, a mensagem do design
     console.error(error);
