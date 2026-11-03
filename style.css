@@ -1,0 +1,406 @@
+/* Wavelengths Remastered · estilos da página
+
+   Vem do Wavelengths da Fase 1, com a barra de filtro a mais.
+
+   Este arquivo usa CSS nesting nativo: a regra de um filho fica dentro
+   do bloco do pai, e o & representa o seletor do pai.
+   Suporte: Chrome 120+, Firefox 117+ e Safari 17.2+.
+   Navegadores mais antigos ignoram as regras aninhadas. */
+
+
+/* Base */
+
+/* Com border-box, width e height já incluem padding e borda */
+* {
+  box-sizing: border-box;
+}
+
+/* Cor, fonte e altura de linha do body são herdadas por todos os filhos */
+body {
+  margin: 0;
+  background-color: #111111;
+  color: #F5F1E8;
+  font-family: "DM Sans", sans-serif;
+  line-height: 1.6;
+}
+
+/* Paleta sobre o fundo #111111 (contraste medido pela WCAG, mínimo 4,5:1):
+   texto #F5F1E8 (16,8:1), secundário #CFC8BA (11,4:1),
+   terciário #A39C8E (6,9:1) e bordas #2A2A2A (só decoração). */
+
+p {
+  font-size: 18px;
+  color: #CFC8BA;
+}
+
+/* Links não herdam a cor; inherit manda usar a cor do pai */
+a {
+  color: inherit;
+}
+
+/* Contorno para quem navega pelo teclado (Tab) */
+a:focus-visible,
+summary:focus-visible,
+button:focus-visible {
+  outline: 2px solid;
+  outline-offset: 4px;
+}
+
+/* Syne nos títulos, DM Sans no texto (carregadas no head) */
+h1,
+h2,
+.logo,
+.album-number {
+  font-family: "Syne", sans-serif;
+}
+
+h1 {
+  font-size: 96px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+h2 {
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+/* A DM Sans foi carregada só nos pesos 400 e 500 */
+strong {
+  font-weight: 500;
+}
+
+summary {
+  font-weight: 500;
+
+  /* &:hover vira summary:hover */
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+/* Rótulos pequenos em cinza mais claro */
+.hero-hint,
+.album-label {
+  color: #A39C8E;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+
+/* Cabeçalho */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 64px;
+  border-bottom: 1px solid #2A2A2A;
+
+  /* Aninhado, vira header a.
+     O sublinhado existe desde o início, só que transparente:
+     assim a cor dele pode mudar aos poucos com transition. */
+  a {
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+
+    /* Aninhado de novo, vira header a:hover. O foco pelo teclado ganha o mesmo efeito. */
+    &:hover,
+    &:focus-visible {
+      text-decoration-color: currentColor;
+    }
+  }
+}
+
+.logo {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+nav {
+  ul {
+    display: flex;
+    gap: 32px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  a {
+    color: #CFC8BA;
+    font-weight: 500;
+
+    &:hover,
+    &:focus-visible {
+      color: #F5F1E8;
+    }
+  }
+}
+
+
+/* Abertura */
+
+#hero {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 24px;
+  height: 760px;
+  padding: 64px;
+  text-align: center;
+
+  .hero-subtitle {
+    font-size: 24px;
+  }
+
+  /* Palco do carrossel 3D. perspective é a distância do olho até a cena:
+     quanto menor, mais forte o efeito de profundidade. */
+  .hero-covers {
+    perspective: 1000px;
+  }
+
+  /* O carrossel: as capas ficam em volta de um eixo e o conjunto gira */
+  .carousel {
+    display: grid;
+    /* Os filhos mantêm a posição em 3D, em vez de serem achatados no plano */
+    transform-style: preserve-3d;
+    animation: spin 24s linear infinite;
+
+    /* As oito capas na mesma célula do grid, uma sobre a outra */
+    img {
+      grid-area: 1 / 1;
+    }
+
+    /* :nth-child(n) escolhe a capa pela posição.
+       Cada uma gira 45° a mais (360° ÷ 8) e depois anda 240px para fora do centro. */
+    img:nth-child(1) {
+      transform: rotateY(0deg) translateZ(240px);
+    }
+
+    img:nth-child(2) {
+      transform: rotateY(45deg) translateZ(240px);
+    }
+
+    img:nth-child(3) {
+      transform: rotateY(90deg) translateZ(240px);
+    }
+
+    img:nth-child(4) {
+      transform: rotateY(135deg) translateZ(240px);
+    }
+
+    img:nth-child(5) {
+      transform: rotateY(180deg) translateZ(240px);
+    }
+
+    img:nth-child(6) {
+      transform: rotateY(225deg) translateZ(240px);
+    }
+
+    img:nth-child(7) {
+      transform: rotateY(270deg) translateZ(240px);
+    }
+
+    img:nth-child(8) {
+      transform: rotateY(315deg) translateZ(240px);
+    }
+
+    /* Quem pede menos movimento no sistema vê o carrossel parado */
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+}
+
+/* Uma volta completa no eixo vertical (Y) */
+@keyframes spin {
+  from {
+    transform: rotateY(0deg);
+  }
+
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+
+/* Filtro */
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  padding: 40px 64px;
+  border-top: 1px solid #2A2A2A;
+
+  .filter-group {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  /* O título usa o estilo dos rótulos pequenos, não o dos h2 dos álbuns */
+  h2 {
+    margin: 0;
+    color: #A39C8E;
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+  }
+
+  .filter-status {
+    margin: 0;
+    font-size: 16px;
+  }
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/* Botão em forma de pílula, com pelo menos 44px de altura para o toque */
+.filter-button {
+  min-height: 44px;
+  padding: 8px 20px;
+  border: 1px solid #3A3A3A;
+  border-radius: 999px;
+  background-color: transparent;
+  color: #CFC8BA;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: #A39C8E;
+  }
+
+  /* O botão ligado fica preenchido: muda o fundo e o texto, não só a cor da borda */
+  &[aria-pressed="true"] {
+    border-color: #F5F1E8;
+    background-color: #F5F1E8;
+    color: #111111;
+  }
+}
+
+
+/* Álbuns */
+
+/* Cada álbum guarda a própria cor de destaque numa variável.
+   Contraste com o fundo: 13,1:1, 10,1:1, 7,9:1, 13,7:1, 7,2:1, 10,2:1, 9,3:1 e 8,4:1. */
+#album-01 {
+  --color-accent: #FFD166;
+}
+
+#album-02 {
+  --color-accent: #80CBC4;
+}
+
+#album-03 {
+  --color-accent: #B39DDB;
+}
+
+#album-04 {
+  --color-accent: #C3E88D;
+}
+
+#album-05 {
+  --color-accent: #EF8354;
+}
+
+#album-06 {
+  --color-accent: #7CC6FE;
+}
+
+#album-07 {
+  --color-accent: #F2A65A;
+}
+
+#album-08 {
+  --color-accent: #F28FAD;
+}
+
+/* Capa de 440px numa coluna e o texto no espaço que sobra (1fr) */
+.album {
+  display: grid;
+  grid-template-columns: 440px 1fr;
+  grid-template-areas: "cover info";
+  gap: 80px;
+  align-items: center;
+  padding: 96px 64px;
+  border-top: 1px solid #2A2A2A;
+
+  /* Sem espaço depois do &: vira .album.album-reverse (as duas classes no mesmo elemento) */
+  &.album-reverse {
+    grid-template-columns: 1fr 440px;
+    grid-template-areas: "info cover";
+  }
+
+  img {
+    grid-area: cover;
+  }
+
+  .album-info {
+    grid-area: info;
+  }
+
+  .album-number {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  /* Etiquetas de gênero em forma de pílula */
+  .album-genres {
+    display: flex;
+    gap: 8px;
+    padding: 0;
+    list-style: none;
+
+    li {
+      padding: 4px 14px;
+      border: 1px solid #2A2A2A;
+      border-radius: 999px;
+      color: #CFC8BA;
+      font-size: 14px;
+    }
+  }
+
+  /* Clima do álbum: bolinhas na cor de destaque */
+  .album-mood {
+    display: flex;
+    gap: 24px;
+    padding: 0;
+    list-style-position: inside;
+
+    li::marker {
+      color: var(--color-accent);
+    }
+  }
+
+  .album-favorite strong {
+    color: var(--color-accent);
+  }
+}
+
+
+/* Rodapé */
+
+footer {
+  padding: 48px 64px;
+  border-top: 1px solid #2A2A2A;
+
+  p {
+    color: #A39C8E;
+    font-size: 14px;
+  }
+}

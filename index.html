@@ -4,8 +4,286 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wavelengths Remastered · Álbuns que me formaram</title>
+  <!-- Fontes do Google Fonts: Syne (600 e 800) e DM Sans (400 e 500) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Syne:wght@600;800&display=swap">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <!-- Cabeçalho: nome do site e navegação -->
+  <header>
+    <a class="logo" href="#hero">Wavelengths</a>
+    <nav>
+      <ul>
+        <li><a href="#albums">Álbuns</a></li>
+        <li><a href="#about">Sobre</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Conteúdo principal: só existe um main por página -->
+  <main>
+
+    <!-- Abertura da página -->
+    <section id="hero">
+      <h1>Wavelengths</h1>
+      <p class="hero-subtitle">Álbuns que me formaram</p>
+      <!-- As capas aqui repetem as dos álbuns: são decoração, então o alt fica vazio -->
+      <div class="hero-covers">
+        <!-- O carrossel é a parte que gira; a hero-covers em volta é o palco -->
+        <div class="carousel">
+          <img src="covers/hybrid-theory.jpg" alt="" width="120" height="120">
+          <img src="covers/meteora.jpg" alt="" width="120" height="120">
+          <img src="covers/blink-182.jpg" alt="" width="120" height="120">
+          <img src="covers/a-fever-you-cant-sweat-out.jpg" alt="" width="120" height="120">
+          <img src="covers/riot.jpg" alt="" width="120" height="120">
+          <img src="covers/brand-new-eyes.jpg" alt="" width="120" height="120">
+          <img src="covers/paramore.jpg" alt="" width="120" height="120">
+          <img src="covers/thats-the-spirit.jpg" alt="" width="120" height="120">
+        </div>
+      </div>
+      <p class="hero-hint">Role para ouvir</p>
+    </section>
+
+    <!-- Filtro: cada botão guarda o gênero em data-genre; aria-pressed diz qual está ligado -->
+    <section class="filters" id="albums" aria-labelledby="filters-title">
+      <div class="filter-group">
+        <h2 id="filters-title">Filtrar por gênero</h2>
+        <div class="filter-buttons">
+          <button class="filter-button" type="button" data-genre="Todos" aria-pressed="true">Todos</button>
+          <button class="filter-button" type="button" data-genre="Pop punk" aria-pressed="false">Pop punk</button>
+          <button class="filter-button" type="button" data-genre="Rock alternativo" aria-pressed="false">Rock alternativo</button>
+          <button class="filter-button" type="button" data-genre="Emo" aria-pressed="false">Emo</button>
+          <button class="filter-button" type="button" data-genre="Nu metal" aria-pressed="false">Nu metal</button>
+        </div>
+      </div>
+      <!-- aria-live faz o leitor de tela ler o texto quando ele muda -->
+      <p class="filter-status" aria-live="polite">Mostrando 8 de 8 álbuns</p>
+    </section>
+
+    <!-- Os álbuns ficam juntos numa div, que o JavaScript vai preencher -->
+    <div class="album-list">
+
+      <section class="album" id="album-01">
+        <!-- width e height reservam o espaço da imagem antes de ela carregar -->
+        <img src="covers/hybrid-theory.jpg" alt="Capa do álbum Hybrid Theory: um soldado com asas de libélula, pintado em estêncil vermelho escuro, sobre um fundo cinza cheio de letras, com o nome Linkin Park no alto" width="440" height="440">
+        <div class="album-info">
+          <p class="album-number">01</p>
+          <h2>Hybrid Theory</h2>
+          <p>Linkin Park · 2000</p>
+          <ul class="album-genres">
+            <li>Nu metal</li>
+            <li>Rap metal</li>
+            <li>Rock alternativo</li>
+          </ul>
+          <p>Álbum de estreia do Linkin Park, com “One Step Closer”, “Crawling”, “Papercut” e “In the End”.</p>
+          <!-- details esconde o texto; o summary é o botão que mostra -->
+          <details>
+            <summary>Mostrar mais</summary>
+            <p>Produzido por Don Gilmore, o álbum mistura guitarras pesadas, rap, samples e eletrônica, com a voz de Chester Bennington alternando melodia e gritos e os versos de Mike Shinoda. “Crawling” venceu o Grammy de melhor performance de hard rock, e o disco virou uma das estreias mais vendidas do século. As letras falam de conflito interno, paranoia e frustração.</p>
+          </details>
+          <p class="album-label">Clima do álbum</p>
+          <ul class="album-mood">
+            <li>Angústia</li>
+            <li>Raiva</li>
+            <li>Catarse</li>
+          </ul>
+          <p class="album-favorite">Faixa favorita: <strong>Papercut</strong></p>
+        </div>
+      </section>
+
+      <section class="album album-reverse" id="album-02">
+        <img src="covers/meteora.jpg" alt="Capa do álbum Meteora: um grafiteiro de máscara agachado com uma lata de spray, em tons de sépia, sobre o nome Linkin Park Meteora" width="440" height="440">
+        <div class="album-info">
+          <p class="album-number">02</p>
+          <h2>Meteora</h2>
+          <p>Linkin Park · 2003</p>
+          <ul class="album-genres">
+            <li>Nu metal</li>
+            <li>Rap rock</li>
+            <li>Rock alternativo</li>
+          </ul>
+          <p>Segundo álbum de estúdio do Linkin Park, que estreou em primeiro lugar nos Estados Unidos, com “Somewhere I Belong”, “Numb”, “Faint” e “Breaking the Habit”.</p>
+          <details>
+            <summary>Mostrar mais</summary>
+            <p>De novo com Don Gilmore na produção, o álbum aprofunda a fórmula de Hybrid Theory, com mais eletrônica, cordas e samples sob as guitarras pesadas. As letras falam de vícios, hábitos autodestrutivos e da sensação de não pertencer, e “Breaking the Habit” troca as guitarras por cordas e batida eletrônica.</p>
+          </details>
+          <p class="album-label">Clima do álbum</p>
+          <ul class="album-mood">
+            <li>Inquietação</li>
+            <li>Vulnerabilidade</li>
+            <li>Intensidade</li>
+          </ul>
+          <p class="album-favorite">Faixa favorita: <strong>Breaking the Habit</strong></p>
+        </div>
+      </section>
+
+      <section class="album" id="album-03">
+        <img src="covers/blink-182.jpg" alt="Capa do álbum blink-182: o rosto sorridente com olhos em X, símbolo da banda, dentro de um círculo de setas, sobre manchas verde e rosa" width="440" height="440">
+        <div class="album-info">
+          <p class="album-number">03</p>
+          <h2>blink-182</h2>
+          <p>blink-182 · 2003</p>
+          <ul class="album-genres">
+            <li>Pop punk</li>
+            <li>Rock alternativo</li>
+          </ul>
+          <p>Quinto álbum de estúdio do blink-182, mais sombrio e experimental, com “Feeling This”, “I Miss You” e “Down”.</p>
+          <details>
+            <summary>Mostrar mais</summary>
+            <p>Também produzido por Jerry Finn, o álbum troca as piadas por arranjos mais densos, camadas de estúdio e influências do pós-punk e da new wave, com participação de Robert Smith, do The Cure, em “All of This”. As letras tratam de saudade, relacionamentos e amadurecimento.</p>
+          </details>
+          <p class="album-label">Clima do álbum</p>
+          <ul class="album-mood">
+            <li>Melancolia</li>
+            <li>Saudade</li>
+            <li>Maturidade</li>
+          </ul>
+          <p class="album-favorite">Faixa favorita: <strong>I Miss You</strong></p>
+        </div>
+      </section>
+
+      <section class="album album-reverse" id="album-04">
+        <img src="covers/a-fever-you-cant-sweat-out.jpg" alt="Capa do álbum A Fever You Can’t Sweat Out: colagem de cinco figuras femininas em roupas de época sentadas num balcão de bar, sobre fundo vermelho, sob um quadro com um lustre" width="440" height="440">
+        <div class="album-info">
+          <p class="album-number">04</p>
+          <h2>A Fever You Can’t Sweat Out</h2>
+          <p>Panic! at the Disco · 2005</p>
+          <ul class="album-genres">
+            <li>Pop punk</li>
+            <li>Emo</li>
+            <li>Dance-punk</li>
+          </ul>
+          <p>Álbum de estreia do Panic! at the Disco, com “I Write Sins Not Tragedies”, “The Only Difference Between Martyrdom and Suicide Is Press Coverage” e “But It’s Better If You Do”.</p>
+          <details>
+            <summary>Mostrar mais</summary>
+            <p>Produzido por Matt Squire, o álbum é dividido em duas metades separadas por uma intermission: a primeira é dançante e eletrônica, a segunda troca os sintetizadores por piano, acordeão e um clima de cabaré. As letras de Ryan Ross são teatrais e irônicas, cheias de referências literárias, e “Camisado” trata de alcoolismo na família.</p>
+          </details>
+          <p class="album-label">Clima do álbum</p>
+          <ul class="album-mood">
+            <li>Teatralidade</li>
+            <li>Ironia</li>
+            <li>Energia</li>
+          </ul>
+          <p class="album-favorite">Faixa favorita: <strong>Camisado</strong></p>
+        </div>
+      </section>
+
+      <section class="album" id="album-05">
+        <img src="covers/riot.jpg" alt="Capa do álbum Riot!: a palavra “Riot!” escrita à mão dezenas de vezes em preto sobre fundo branco, com uma delas em laranja" width="440" height="440">
+        <div class="album-info">
+          <p class="album-number">05</p>
+          <h2>Riot!</h2>
+          <p>Paramore · 2007</p>
+          <ul class="album-genres">
+            <li>Pop punk</li>
+            <li>Emo</li>
+            <li>Rock alternativo</li>
+          </ul>
+          <p>Segundo álbum de estúdio do Paramore, que levou a banda ao grande público com “Misery Business”, “crushcrushcrush” e “That’s What You Get”.</p>
+          <details>
+            <summary>Mostrar mais</summary>
+            <p>Produzido por David Bendeth, o álbum tem guitarras rápidas, refrões grandes e a voz de Hayley Williams no centro de tudo. As letras falam de frustração, relacionamentos e da vontade de não se encaixar, num retrato da juventude da banda naquele momento.</p>
+          </details>
+          <p class="album-label">Clima do álbum</p>
+          <ul class="album-mood">
+            <li>Raiva</li>
+            <li>Energia</li>
+            <li>Juventude</li>
+          </ul>
+          <p class="album-favorite">Faixa favorita: <strong>When It Rains</strong></p>
+        </div>
+      </section>
+
+      <section class="album album-reverse" id="album-06">
+        <img src="covers/brand-new-eyes.jpg" alt="Capa do álbum Brand New Eyes: uma borboleta amarela e preta com as asas separadas do corpo, presas por alfinetes numa parede clara" width="440" height="440">
+        <div class="album-info">
+          <p class="album-number">06</p>
+          <h2>Brand New Eyes</h2>
+          <p>Paramore · 2009</p>
+          <ul class="album-genres">
+            <li>Pop punk</li>
+            <li>Rock alternativo</li>
+            <li>Emo</li>
+          </ul>
+          <p>Terceiro álbum de estúdio do Paramore e o último com os irmãos Farro, com “Ignorance”, “Brick by Boring Brick” e “The Only Exception”.</p>
+          <details>
+            <summary>Mostrar mais</summary>
+            <p>Produzido por Rob Cavallo, o álbum foi gravado num momento de tensão dentro da banda, e isso aparece nas letras sobre conflito, confiança e reconciliação. Ao lado das faixas mais agressivas, a balada acústica “The Only Exception” mostra o lado mais delicado de Hayley Williams.</p>
+          </details>
+          <p class="album-label">Clima do álbum</p>
+          <ul class="album-mood">
+            <li>Conflito</li>
+            <li>Desabafo</li>
+            <li>Esperança</li>
+          </ul>
+          <p class="album-favorite">Faixa favorita: <strong>The Only Exception</strong></p>
+        </div>
+      </section>
+
+      <section class="album" id="album-07">
+        <img src="covers/paramore.jpg" alt="Capa do álbum Paramore: Hayley Williams de costas, com cabelo laranja e jaqueta jeans escrita “Grow up”, sobre fundo preto" width="440" height="440">
+        <div class="album-info">
+          <p class="album-number">07</p>
+          <h2>Paramore</h2>
+          <p>Paramore · 2013</p>
+          <ul class="album-genres">
+            <li>Pop rock</li>
+            <li>Pop punk</li>
+            <li>Power pop</li>
+          </ul>
+          <p>Quarto álbum de estúdio do Paramore e o primeiro sem os irmãos Farro, com “Now”, “Still Into You” e “Ain’t It Fun”.</p>
+          <details>
+            <summary>Mostrar mais</summary>
+            <p>Lançado em 2013, o álbum amplia o som da banda para o pop, o funk e o gospel. “Ain’t It Fun” venceu o Grammy de melhor canção de rock. As letras falam de recomeço, amadurecimento e crescimento pessoal.</p>
+          </details>
+          <p class="album-label">Clima do álbum</p>
+          <ul class="album-mood">
+            <li>Recomeço</li>
+            <li>Euforia</li>
+            <li>Amadurecimento</li>
+          </ul>
+          <p class="album-favorite">Faixa favorita: <strong>Last Hope</strong></p>
+        </div>
+      </section>
+
+      <section class="album album-reverse" id="album-08">
+        <img src="covers/thats-the-spirit.jpg" alt="Capa do álbum That’s the Spirit: o desenho de um guarda-chuva branco pingando, sobre fundo preto" width="440" height="440">
+        <div class="album-info">
+          <p class="album-number">08</p>
+          <h2>That’s the Spirit</h2>
+          <p>Bring Me the Horizon · 2015</p>
+          <ul class="album-genres">
+            <li>Rock alternativo</li>
+            <li>Metal alternativo</li>
+            <li>Rock eletrônico</li>
+          </ul>
+          <p>Quinto álbum de estúdio do Bring Me the Horizon, que deixa o metalcore para trás, com “Throne”, “Drown”, “True Friends” e “Avalanche”.</p>
+          <details>
+            <summary>Mostrar mais</summary>
+            <p>Produzido pela própria banda, com Oli Sykes e Jordan Fish à frente, o álbum troca os gritos por refrões limpos, sintetizadores e uma produção mais pop. As letras falam de depressão, vício e da luta para seguir em frente, sempre com uma ponta de ironia já no título.</p>
+          </details>
+          <p class="album-label">Clima do álbum</p>
+          <ul class="album-mood">
+            <li>Ironia</li>
+            <li>Fragilidade</li>
+            <li>Superação</li>
+          </ul>
+          <p class="album-favorite">Faixa favorita: <strong>Avalanche</strong></p>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Rodapé: sobre o projeto e direitos -->
+  <footer id="about">
+    <p>Wavelengths Remastered é uma página de estudo de JavaScript feita por Renan Ferreira.</p>
+    <p>As capas aparecem em baixa resolução, com crédito, só para fins educacionais. Os direitos pertencem aos artistas e às gravadoras.</p>
+  </footer>
 
 </body>
 </html>
