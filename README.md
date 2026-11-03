@@ -23,6 +23,7 @@ Para ver o projeto como ele estava em uma etapa, use `git log --oneline` e depoi
 - `07-cor-de-cada-album`: `style.setProperty` põe o `accentColor` do JSON na variável `--color-accent`.
 - `08-capas-do-hero`: as capas do carrossel também vêm do JSON.
 - `09-erro-ao-carregar`: `try`/`catch` e `response.ok` mostram uma mensagem quando o `albums.json` não abre.
+- `10-filtrando-por-genero`: os botões do filtro com `filter`, `includes`, `hidden` e `aria-pressed`.
 
 ## Créditos das capas
 

@@ -5,6 +5,10 @@ const albumTemplate = document.querySelector('#album-template');
 const carousel = document.querySelector('.carousel');
 const loadError = document.querySelector('.load-error');
 const filterStatus = document.querySelector('.filter-status');
+const filterButtons = document.querySelectorAll('.filter-button');
+
+// A lista fica fora da loadAlbums porque o filtro também precisa dela
+let albums = [];
 
 // Cria um <li> para cada texto da lista e coloca dentro da <ul>
 const fillList = (list, items) => {
@@ -44,7 +48,22 @@ const createAlbum = (album, index) => {
     section.classList.add('album-reverse');
   }
 
+  // Guarda a section no próprio álbum, para o filtro achar depois
+  album.element = section;
   albumList.append(section);
+};
+
+// Mostra só os álbuns que têm o gênero escolhido ("Todos" mostra tudo)
+const showGenre = (genre) => {
+  // filter devolve uma lista nova, só com os álbuns que passam no teste
+  const visibleAlbums = albums.filter((album) => genre === 'Todos' || album.genres.includes(genre));
+
+  // hidden esconde a section; includes diz se o álbum está entre os visíveis
+  albums.forEach((album) => {
+    album.element.hidden = !visibleAlbums.includes(album);
+  });
+
+  filterStatus.textContent = `Mostrando ${visibleAlbums.length} de ${albums.length} álbuns`;
 };
 
 // Cria a capa pequena do carrossel. Ela repete a capa do álbum e é só
@@ -71,7 +90,7 @@ const loadAlbums = async () => {
     }
 
     // json() lê o texto da resposta e transforma em lista de objetos do JavaScript
-    const albums = await response.json();
+    albums = await response.json();
     // forEach chama a função uma vez para cada álbum, passando o álbum e a posição
     albums.forEach((album, index) => {
       createAlbum(album, index);
@@ -84,5 +103,15 @@ const loadAlbums = async () => {
     filterStatus.textContent = 'Nenhum álbum carregado';
   }
 };
+
+filterButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    // Só o botão clicado fica com aria-pressed="true"
+    filterButtons.forEach((otherButton) => {
+      otherButton.setAttribute('aria-pressed', String(otherButton === button));
+    });
+    showGenre(button.dataset.genre);
+  });
+});
 
 loadAlbums();

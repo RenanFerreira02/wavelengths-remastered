@@ -309,6 +309,11 @@ nav {
   padding: 96px 64px;
   border-top: 1px solid #2A2A2A;
 
+  /* O display: grid acima vence o hidden do HTML; esta regra devolve o display: none */
+  &[hidden] {
+    display: none;
+  }
+
   /* Sem espaço depois do &: vira .album.album-reverse (as duas classes no mesmo elemento) */
   &.album-reverse {
     grid-template-columns: 1fr 440px;
