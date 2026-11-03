@@ -33,6 +33,9 @@ const createAlbum = (album, index) => {
   fillList(section.querySelector('.album-mood'), album.mood);
   section.querySelector('.album-favorite strong').textContent = album.favoriteTrack;
 
+  // A cor do álbum vai para a variável CSS --color-accent, que o style.css já usa
+  section.style.setProperty('--color-accent', album.accentColor);
+
   // index ímpar (o 2º, o 4º, o 6º...) deixa a capa à direita
   if (index % 2 === 1) {
     section.classList.add('album-reverse');

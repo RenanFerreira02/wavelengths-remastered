@@ -20,6 +20,7 @@ Para ver o projeto como ele estava em uma etapa, use `git log --oneline` e depoi
 - `04-template-do-album`: `<template>`, `cloneNode` e `textContent` montam o primeiro álbum a partir do JSON.
 - `05-um-album-por-item`: `forEach` monta os 8 álbuns; número com `padStart` e lado da capa com `index % 2`.
 - `06-listas-dentro-do-album`: gêneros e clima com `createElement('li')`, um `forEach` dentro do outro.
+- `07-cor-de-cada-album`: `style.setProperty` põe o `accentColor` do JSON na variável `--color-accent`.
 
 ## Créditos das capas
 

@@ -295,39 +295,9 @@ nav {
 
 /* Álbuns */
 
-/* Cada álbum guarda a própria cor de destaque numa variável.
+/* A cor de destaque (--color-accent) de cada álbum vem do albums.json:
+   o script.js coloca a variável direto na section.
    Contraste com o fundo: 13,1:1, 10,1:1, 7,9:1, 13,7:1, 7,2:1, 10,2:1, 9,3:1 e 8,4:1. */
-#album-01 {
-  --color-accent: #FFD166;
-}
-
-#album-02 {
-  --color-accent: #80CBC4;
-}
-
-#album-03 {
-  --color-accent: #B39DDB;
-}
-
-#album-04 {
-  --color-accent: #C3E88D;
-}
-
-#album-05 {
-  --color-accent: #EF8354;
-}
-
-#album-06 {
-  --color-accent: #7CC6FE;
-}
-
-#album-07 {
-  --color-accent: #F2A65A;
-}
-
-#album-08 {
-  --color-accent: #F28FAD;
-}
 
 /* Capa de 440px numa coluna e o texto no espaço que sobra (1fr) */
 .album {
