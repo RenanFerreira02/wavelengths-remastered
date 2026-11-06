@@ -119,6 +119,17 @@ const startCarousel = () => {
   gsap.to(carousel, { rotationY: 360, duration: 24, ease: 'none', repeat: -1 });
 };
 
+// A entrada da página: uma timeline toca as animações uma depois da outra.
+// from anima a partir do valor pedido até o valor do CSS (de invisível para visível).
+const playIntro = () => {
+  const intro = gsap.timeline({ defaults: { duration: 0.8, ease: 'power2.out' } });
+  intro
+    // stagger: o subtítulo começa 0,15 s depois do título
+    .from('#hero h1, .hero-subtitle', { y: 40, opacity: 0, stagger: 0.15 })
+    .from('.hero-covers', { scale: 0.8, opacity: 0 })
+    .from('.hero-hint', { opacity: 0 });
+};
+
 filterButtons.forEach((button) => {
   button.addEventListener('click', () => {
     // Só o botão clicado fica com aria-pressed="true"
@@ -129,8 +140,9 @@ filterButtons.forEach((button) => {
   });
 });
 
-// Quem pediu menos movimento vê o carrossel parado
+// Quem pediu menos movimento vê a página pronta e o carrossel parado
 if (!prefersReducedMotion) {
+  playIntro();
   startCarousel();
 }
 

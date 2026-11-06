@@ -27,6 +27,7 @@ Para ver o projeto como ele estava em uma etapa, use `git log --oneline` e depoi
 - `11-alternando-os-lados`: `classList.toggle` alterna o lado da capa só entre os álbuns visíveis.
 - `12-palco-do-remaster`: o visual novo dos álbuns em HTML e CSS: palco preso com `position: sticky`, vinil feito só de CSS e número gigante.
 - `13-gsap-por-cdn`: o GSAP entra pelo CDN e o giro do carrossel passa do `@keyframes` para `gsap.to`, com `prefers-reduced-motion` no JavaScript.
+- `14-entrada-com-timeline`: `gsap.timeline`, `from` e `stagger` na abertura da página.
 
 ## Créditos
 
