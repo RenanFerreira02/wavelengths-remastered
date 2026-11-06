@@ -1,4 +1,4 @@
-// Wavelengths Remastered · os álbuns vêm do albums.json
+// Wavelengths Remastered · os álbuns vêm do albums.json e as animações são do GSAP
 
 const albumList = document.querySelector('.album-list');
 const albumTemplate = document.querySelector('#album-template');
@@ -6,6 +6,9 @@ const carousel = document.querySelector('.carousel');
 const loadError = document.querySelector('.load-error');
 const filterStatus = document.querySelector('.filter-status');
 const filterButtons = document.querySelectorAll('.filter-button');
+
+// true quando a pessoa pediu menos movimento nas configurações do sistema
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // A lista fica fora da loadAlbums porque o filtro também precisa dela
 let albums = [];
@@ -110,6 +113,12 @@ const loadAlbums = async () => {
   }
 };
 
+// O carrossel dá uma volta (360°) no eixo Y a cada 24 segundos, para sempre (repeat: -1).
+// ease: 'none' mantém a velocidade constante, sem acelerar nem frear.
+const startCarousel = () => {
+  gsap.to(carousel, { rotationY: 360, duration: 24, ease: 'none', repeat: -1 });
+};
+
 filterButtons.forEach((button) => {
   button.addEventListener('click', () => {
     // Só o botão clicado fica com aria-pressed="true"
@@ -119,5 +128,10 @@ filterButtons.forEach((button) => {
     showGenre(button.dataset.genre);
   });
 });
+
+// Quem pediu menos movimento vê o carrossel parado
+if (!prefersReducedMotion) {
+  startCarousel();
+}
 
 loadAlbums();

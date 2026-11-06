@@ -164,12 +164,11 @@ nav {
     perspective: 1000px;
   }
 
-  /* O carrossel: as capas ficam em volta de um eixo e o conjunto gira */
+  /* O carrossel: as capas ficam em volta de um eixo e o conjunto gira (o giro é do GSAP, no script.js) */
   .carousel {
     display: grid;
     /* Os filhos mantêm a posição em 3D, em vez de serem achatados no plano */
     transform-style: preserve-3d;
-    animation: spin 24s linear infinite;
 
     /* As oito capas na mesma célula do grid, uma sobre a outra */
     img {
@@ -209,22 +208,6 @@ nav {
     img:nth-child(8) {
       transform: rotateY(315deg) translateZ(240px);
     }
-
-    /* Quem pede menos movimento no sistema vê o carrossel parado */
-    @media (prefers-reduced-motion: reduce) {
-      animation: none;
-    }
-  }
-}
-
-/* Uma volta completa no eixo vertical (Y) */
-@keyframes spin {
-  from {
-    transform: rotateY(0deg);
-  }
-
-  to {
-    transform: rotateY(360deg);
   }
 }
 
