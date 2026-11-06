@@ -30,6 +30,7 @@ Para ver o projeto como ele estava em uma etapa, use `git log --oneline` e depoi
 - `14-entrada-com-timeline`: `gsap.timeline`, `from` e `stagger` na abertura da página.
 - `15-aparecendo-na-rolagem`: `ScrollTrigger` faz cada álbum aparecer quando chega na tela.
 - `16-girando-com-a-rolagem`: `scrub` liga o vinil e o carrossel à rolagem.
+- `17-parallax-do-numero`: o número gigante anda mais devagar que a página.
 
 ## Créditos
 

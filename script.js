@@ -60,6 +60,21 @@ const spinVinylOnScroll = (section) => {
   );
 };
 
+// Parallax: o número gigante anda numa velocidade diferente do resto da página.
+// Ele vai de 200 px abaixo a 200 px acima enquanto o álbum atravessa a tela,
+// do topo do álbum entrando por baixo (top bottom) até o fim saindo por cima (bottom top).
+const moveNumberOnScroll = (section) => {
+  gsap.fromTo(
+    section.querySelector('.album-big-number'),
+    { y: 200 },
+    {
+      y: -200,
+      ease: 'none',
+      scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: true },
+    },
+  );
+};
+
 // Copia o molde do template e preenche com os dados de um álbum.
 // index é a posição do álbum na lista: 0 para o primeiro, 1 para o segundo...
 const createAlbum = (album, index) => {
@@ -94,6 +109,7 @@ const createAlbum = (album, index) => {
   if (!prefersReducedMotion) {
     revealOnScroll(section);
     spinVinylOnScroll(section);
+    moveNumberOnScroll(section);
   }
 };
 
