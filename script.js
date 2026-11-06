@@ -1,5 +1,8 @@
 // Wavelengths Remastered · os álbuns vêm do albums.json e as animações são do GSAP
 
+// Plugin do GSAP precisa ser registrado antes de usar
+gsap.registerPlugin(ScrollTrigger);
+
 const albumList = document.querySelector('.album-list');
 const albumTemplate = document.querySelector('#album-template');
 const carousel = document.querySelector('.carousel');
@@ -19,6 +22,17 @@ const fillList = (list, items) => {
     const listItem = document.createElement('li');
     listItem.textContent = item;
     list.append(listItem);
+  });
+};
+
+// O álbum sobe e aparece quando o topo dele chega a 75% da altura da tela
+const revealOnScroll = (section) => {
+  gsap.from(section, {
+    y: 80,
+    opacity: 0,
+    duration: 0.8,
+    ease: 'power2.out',
+    scrollTrigger: { trigger: section, start: 'top 75%' },
   });
 };
 
@@ -52,6 +66,10 @@ const createAlbum = (album, index) => {
   // Guarda a section no próprio álbum, para o filtro achar depois
   album.element = section;
   albumList.append(section);
+
+  if (!prefersReducedMotion) {
+    revealOnScroll(section);
+  }
 };
 
 // Mostra só os álbuns que têm o gênero escolhido ("Todos" mostra tudo)
@@ -71,6 +89,9 @@ const showGenre = (genre) => {
   });
 
   filterStatus.textContent = `Mostrando ${visibleAlbums.length} de ${albums.length} álbuns`;
+
+  // Os álbuns mudaram de lugar: o ScrollTrigger mede de novo onde cada um começa
+  ScrollTrigger.refresh();
 };
 
 // Cria a capa pequena do carrossel. Ela repete a capa do álbum e é só
