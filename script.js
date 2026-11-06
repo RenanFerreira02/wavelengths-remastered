@@ -29,8 +29,11 @@ const createAlbum = (album, index) => {
   cover.src = album.cover;
   cover.alt = album.coverAlt;
 
-  // O número vem da posição: index + 1, com zero à esquerda (1 vira "01")
-  section.querySelector('.album-number').textContent = String(index + 1).padStart(2, '0');
+  // O número vem da posição: index + 1, com zero à esquerda (1 vira "01").
+  // Ele aparece duas vezes: no texto e gigante, atrás do palco.
+  const number = String(index + 1).padStart(2, '0');
+  section.querySelector('.album-number').textContent = number;
+  section.querySelector('.album-big-number').textContent = number;
   // textContent põe o texto como texto, nunca como HTML
   section.querySelector('.album-title').textContent = album.title;
   section.querySelector('.album-artist').textContent = `${album.artist} · ${album.year}`;

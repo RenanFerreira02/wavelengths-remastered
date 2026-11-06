@@ -299,33 +299,135 @@ nav {
    o script.js coloca a variável direto na section.
    Contraste com o fundo: 13,1:1, 10,1:1, 7,9:1, 13,7:1, 7,2:1, 10,2:1, 9,3:1 e 8,4:1. */
 
-/* Capa de 440px numa coluna e o texto no espaço que sobra (1fr) */
+/* Cada álbum é mais alto que a tela: os 60vh a mais são o caminho que a
+   rolagem percorre enquanto o palco (album-stage) fica preso no topo.
+   Tem que ser altura: o sticky não conta o padding da section. */
 .album {
-  display: grid;
-  grid-template-columns: 440px 1fr;
-  grid-template-areas: "cover info";
-  gap: 80px;
-  align-items: center;
-  padding: 96px 64px;
-  border-top: 1px solid #2A2A2A;
+  position: relative;
+  min-height: 160vh;
+  /* clip corta o número e o vinil que passam da borda. Com hidden no lugar
+     de clip, o sticky do palco para de funcionar. */
+  overflow: clip;
 
-  /* O display: grid acima vence o hidden do HTML; esta regra devolve o display: none */
+  /* O display do palco não chega aqui, mas a regra fica junto da section */
   &[hidden] {
     display: none;
   }
 
-  /* Sem espaço depois do &: vira .album.album-reverse (as duas classes no mesmo elemento) */
-  &.album-reverse {
-    grid-template-columns: 1fr 440px;
+}
+
+/* O palco: preso no topo (sticky) com a altura da tela.
+   Coluna de 620px: 400px da capa e 220px para o vinil sair. */
+.album-stage {
+  position: sticky;
+  top: 0;
+  display: grid;
+  grid-template-columns: 620px minmax(0, 1fr);
+  grid-template-areas: "cover info";
+  gap: 56px;
+  align-items: center;
+  min-height: 100vh;
+  padding: 96px 64px;
+
+  /* .album-reverse .album-stage: a capa vai para a direita */
+  .album-reverse & {
+    grid-template-columns: minmax(0, 1fr) 620px;
     grid-template-areas: "info cover";
   }
+}
 
-  img {
-    grid-area: cover;
+/* Número gigante vazado, atrás de tudo */
+.album-big-number {
+  position: absolute;
+  top: 40px;
+  right: 32px;
+  margin: 0;
+  font-family: "Syne", sans-serif;
+  font-size: 360px;
+  font-weight: 800;
+  line-height: 1;
+  /* Letra transparente com contorno: text-stroke ainda pede o prefixo -webkit- */
+  color: transparent;
+  -webkit-text-stroke: 2px var(--color-accent);
+  opacity: 0.35;
+  pointer-events: none;
+
+  .album-reverse & {
+    right: auto;
+    left: 32px;
+  }
+}
+
+.album-cover-wrap {
+  grid-area: cover;
+  position: relative;
+  width: 400px;
+  height: 400px;
+
+  .album-reverse & {
+    justify-self: end;
+  }
+}
+
+/* A capa fica na frente do vinil (z-index maior) */
+.album-cover {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 400px;
+  height: 400px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+}
+
+/* O vinil: sulcos com repeating-radial-gradient e dois reflexos com
+   conic-gradient, que mostram o disco girando */
+.vinyl {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 370px;
+  height: 370px;
+  border-radius: 50%;
+  background:
+    conic-gradient(rgba(255, 255, 255, 0) 0deg, rgba(255, 255, 255, 0.14) 30deg, rgba(255, 255, 255, 0) 60deg, rgba(255, 255, 255, 0) 180deg, rgba(255, 255, 255, 0.1) 210deg, rgba(255, 255, 255, 0) 240deg),
+    repeating-radial-gradient(circle, #141414 0 2px, #1D1D1D 2px 4px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  /* Parado, o vinil fica para fora da capa, com parte do selo à mostra */
+  transform: translateX(220px);
+
+  .album-reverse & {
+    transform: translateX(-220px);
   }
 
-  .album-info {
-    grid-area: info;
+  /* O selo no centro, na cor do álbum */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 120px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+  }
+
+  /* O furo no meio do selo */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 178px;
+    border-radius: 50%;
+    background-color: #111111;
+  }
+}
+
+.album-info {
+  grid-area: info;
+  position: relative;
+  z-index: 1;
+
+  /* Textos um pouco mais claros, para o contraste aguentar o fundo colorido */
+  p,
+  li,
+  .album-label {
+    color: #E4DED2;
   }
 
   .album-number {
@@ -337,15 +439,15 @@ nav {
   /* Etiquetas de gênero em forma de pílula */
   .album-genres {
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
     padding: 0;
     list-style: none;
 
     li {
       padding: 4px 14px;
-      border: 1px solid #2A2A2A;
+      border: 1px solid rgba(245, 241, 232, 0.3);
       border-radius: 999px;
-      color: #CFC8BA;
       font-size: 14px;
     }
   }
@@ -353,7 +455,8 @@ nav {
   /* Clima do álbum: bolinhas na cor de destaque */
   .album-mood {
     display: flex;
-    gap: 24px;
+    flex-wrap: wrap;
+    gap: 8px 24px;
     padding: 0;
     list-style-position: inside;
 

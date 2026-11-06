@@ -70,22 +70,31 @@
     <!-- O template não aparece na página: é o molde que o JavaScript copia para cada álbum -->
     <template id="album-template">
       <section class="album">
-        <!-- width e height reservam o espaço da imagem antes de ela carregar -->
-        <img class="album-cover" width="440" height="440">
-        <div class="album-info">
-          <p class="album-number"></p>
-          <h2 class="album-title"></h2>
-          <p class="album-artist"></p>
-          <ul class="album-genres"></ul>
-          <p class="album-summary"></p>
-          <!-- details esconde o texto; o summary é o botão que mostra -->
-          <details>
-            <summary>Mostrar mais</summary>
-            <p class="album-description"></p>
-          </details>
-          <p class="album-label">Clima do álbum</p>
-          <ul class="album-mood"></ul>
-          <p class="album-favorite">Faixa favorita: <strong></strong></p>
+        <!-- O palco fica preso na tela (sticky) enquanto a section passa por baixo -->
+        <div class="album-stage">
+          <!-- Número gigante: é decoração, o número de verdade está no album-info -->
+          <p class="album-big-number" aria-hidden="true"></p>
+          <div class="album-cover-wrap">
+            <!-- O vinil é só CSS: um círculo com sulcos e o selo na cor do álbum -->
+            <div class="vinyl" aria-hidden="true"></div>
+            <!-- width e height reservam o espaço da imagem antes de ela carregar -->
+            <img class="album-cover" width="400" height="400">
+          </div>
+          <div class="album-info">
+            <p class="album-number"></p>
+            <h2 class="album-title"></h2>
+            <p class="album-artist"></p>
+            <ul class="album-genres"></ul>
+            <p class="album-summary"></p>
+            <!-- details esconde o texto; o summary é o botão que mostra -->
+            <details>
+              <summary>Mostrar mais</summary>
+              <p class="album-description"></p>
+            </details>
+            <p class="album-label">Clima do álbum</p>
+            <ul class="album-mood"></ul>
+            <p class="album-favorite">Faixa favorita: <strong></strong></p>
+          </div>
         </div>
       </section>
     </template>

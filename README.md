@@ -25,6 +25,7 @@ Para ver o projeto como ele estava em uma etapa, use `git log --oneline` e depoi
 - `09-erro-ao-carregar`: `try`/`catch` e `response.ok` mostram uma mensagem quando o `albums.json` não abre.
 - `10-filtrando-por-genero`: os botões do filtro com `filter`, `includes`, `hidden` e `aria-pressed`.
 - `11-alternando-os-lados`: `classList.toggle` alterna o lado da capa só entre os álbuns visíveis.
+- `12-palco-do-remaster`: o visual novo dos álbuns em HTML e CSS: palco preso com `position: sticky`, vinil feito só de CSS e número gigante.
 
 ## Créditos das capas
 
@@ -40,6 +41,8 @@ As capas ficam na pasta `covers/`, em baixa resolução (500 × 500 px), só par
 - `thats-the-spirit.jpg`: *That’s the Spirit* (2015), Bring Me the Horizon. Gravadora: RCA Records (Sony Music).
 
 ## Navegadores
+
+O vinil e o palco dos álbuns usam `overflow: clip` e `-webkit-text-stroke`, suportados nos navegadores atuais (Safari a partir do 16).
 
 O `style.css` usa CSS nesting nativo, suportado no Chrome 120+, Firefox 117+ e Safari 17.2+. Em navegadores mais antigos, as regras aninhadas são ignoradas e a página perde parte do estilo.
 
