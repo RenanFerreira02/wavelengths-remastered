@@ -75,6 +75,28 @@ const moveNumberOnScroll = (section) => {
   );
 };
 
+// O fundo da página muda para outra cor aos poucos.
+// overwrite: 'auto' cancela a troca anterior, se ela ainda estiver no meio.
+const changeBackground = (color) => {
+  gsap.to(document.body, {
+    backgroundColor: color,
+    duration: prefersReducedMotion ? 0 : 0.8,
+    overwrite: 'auto',
+  });
+};
+
+// ScrollTrigger sem animação, só com callbacks: funções chamadas quando o
+// álbum chega ao meio da tela, descendo (onEnter) ou subindo (onEnterBack)
+const paintBackgroundOnScroll = (album) => {
+  ScrollTrigger.create({
+    trigger: album.element,
+    start: 'top center',
+    end: 'bottom center',
+    onEnter: () => changeBackground(album.backgroundColor),
+    onEnterBack: () => changeBackground(album.backgroundColor),
+  });
+};
+
 // Copia o molde do template e preenche com os dados de um álbum.
 // index é a posição do álbum na lista: 0 para o primeiro, 1 para o segundo...
 const createAlbum = (album, index) => {
@@ -105,6 +127,7 @@ const createAlbum = (album, index) => {
   // Guarda a section no próprio álbum, para o filtro achar depois
   album.element = section;
   albumList.append(section);
+  paintBackgroundOnScroll(album);
 
   if (!prefersReducedMotion) {
     revealOnScroll(section);
@@ -160,6 +183,16 @@ const loadAlbums = async () => {
 
     // json() lê o texto da resposta e transforma em lista de objetos do JavaScript
     albums = await response.json();
+
+    // Subindo de volta para o filtro, o fundo volta ao preto da página.
+    // Este vem antes dos álbuns: numa rolagem rápida para cima, os callbacks
+    // rodam do último criado para o primeiro, e assim o preto fica por último.
+    ScrollTrigger.create({
+      trigger: albumList,
+      start: 'top center',
+      onLeaveBack: () => changeBackground('#111111'),
+    });
+
     // forEach chama a função uma vez para cada álbum, passando o álbum e a posição
     albums.forEach((album, index) => {
       createAlbum(album, index);

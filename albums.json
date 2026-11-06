@@ -10,7 +10,8 @@
     "description": "Produzido por Don Gilmore, o álbum mistura guitarras pesadas, rap, samples e eletrônica, com a voz de Chester Bennington alternando melodia e gritos e os versos de Mike Shinoda. “Crawling” venceu o Grammy de melhor performance de hard rock, e o disco virou uma das estreias mais vendidas do século. As letras falam de conflito interno, paranoia e frustração.",
     "mood": ["Angústia", "Raiva", "Catarse"],
     "favoriteTrack": "Papercut",
-    "accentColor": "#FFD166"
+    "accentColor": "#FFD166",
+    "backgroundColor": "#413722"
   },
   {
     "title": "Meteora",
@@ -23,7 +24,8 @@
     "description": "De novo com Don Gilmore na produção, o álbum aprofunda a fórmula de Hybrid Theory, com mais eletrônica, cordas e samples sob as guitarras pesadas. As letras falam de vícios, hábitos autodestrutivos e da sensação de não pertencer, e “Breaking the Habit” troca as guitarras por cordas e batida eletrônica.",
     "mood": ["Inquietação", "Vulnerabilidade", "Intensidade"],
     "favoriteTrack": "Breaking the Habit",
-    "accentColor": "#80CBC4"
+    "accentColor": "#80CBC4",
+    "backgroundColor": "#273635"
   },
   {
     "title": "blink-182",
@@ -36,7 +38,8 @@
     "description": "Também produzido por Jerry Finn, o álbum troca as piadas por arranjos mais densos, camadas de estúdio e influências do pós-punk e da new wave, com participação de Robert Smith, do The Cure, em “All of This”. As letras tratam de saudade, relacionamentos e amadurecimento.",
     "mood": ["Melancolia", "Saudade", "Maturidade"],
     "favoriteTrack": "I Miss You",
-    "accentColor": "#B39DDB"
+    "accentColor": "#B39DDB",
+    "backgroundColor": "#312D39"
   },
   {
     "title": "A Fever You Can’t Sweat Out",
@@ -49,7 +52,8 @@
     "description": "Produzido por Matt Squire, o álbum é dividido em duas metades separadas por uma intermission: a primeira é dançante e eletrônica, a segunda troca os sintetizadores por piano, acordeão e um clima de cabaré. As letras de Ryan Ross são teatrais e irônicas, cheias de referências literárias, e “Camisado” trata de alcoolismo na família.",
     "mood": ["Teatralidade", "Ironia", "Energia"],
     "favoriteTrack": "Camisado",
-    "accentColor": "#C3E88D"
+    "accentColor": "#C3E88D",
+    "backgroundColor": "#353C2A"
   },
   {
     "title": "Riot!",
@@ -62,7 +66,8 @@
     "description": "Produzido por David Bendeth, o álbum tem guitarras rápidas, refrões grandes e a voz de Hayley Williams no centro de tudo. As letras falam de frustração, relacionamentos e da vontade de não se encaixar, num retrato da juventude da banda naquele momento.",
     "mood": ["Raiva", "Energia", "Juventude"],
     "favoriteTrack": "When It Rains",
-    "accentColor": "#EF8354"
+    "accentColor": "#EF8354",
+    "backgroundColor": "#3D281E"
   },
   {
     "title": "Brand New Eyes",
@@ -75,7 +80,8 @@
     "description": "Produzido por Rob Cavallo, o álbum foi gravado num momento de tensão dentro da banda, e isso aparece nas letras sobre conflito, confiança e reconciliação. Ao lado das faixas mais agressivas, a balada acústica “The Only Exception” mostra o lado mais delicado de Hayley Williams.",
     "mood": ["Conflito", "Desabafo", "Esperança"],
     "favoriteTrack": "The Only Exception",
-    "accentColor": "#7CC6FE"
+    "accentColor": "#7CC6FE",
+    "backgroundColor": "#263540"
   },
   {
     "title": "Paramore",
@@ -88,7 +94,8 @@
     "description": "Lançado em 2013, o álbum amplia o som da banda para o pop, o funk e o gospel. “Ain’t It Fun” venceu o Grammy de melhor canção de rock. As letras falam de recomeço, amadurecimento e crescimento pessoal.",
     "mood": ["Recomeço", "Euforia", "Amadurecimento"],
     "favoriteTrack": "Last Hope",
-    "accentColor": "#F2A65A"
+    "accentColor": "#F2A65A",
+    "backgroundColor": "#3E2F20"
   },
   {
     "title": "That’s the Spirit",
@@ -101,6 +108,7 @@
     "description": "Produzido pela própria banda, com Oli Sykes e Jordan Fish à frente, o álbum troca os gritos por refrões limpos, sintetizadores e uma produção mais pop. As letras falam de depressão, vício e da luta para seguir em frente, sempre com uma ponta de ironia já no título.",
     "mood": ["Ironia", "Fragilidade", "Superação"],
     "favoriteTrack": "Avalanche",
-    "accentColor": "#F28FAD"
+    "accentColor": "#F28FAD",
+    "backgroundColor": "#3E2A30"
   }
 ]
