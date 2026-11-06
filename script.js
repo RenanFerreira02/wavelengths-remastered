@@ -36,6 +36,30 @@ const revealOnScroll = (section) => {
   });
 };
 
+// scrub liga a animação à rolagem: o vinil anda conforme a página rola,
+// e volta se a rolagem voltar. Do topo do álbum no topo da tela (start)
+// até o fim do álbum no fim da tela (end): é o tempo em que o palco fica preso.
+const spinVinylOnScroll = (section) => {
+  gsap.fromTo(
+    section.querySelector('.vinyl'),
+    { x: 0, rotation: 0 },
+    {
+      // O vinil sai para o lado oposto à capa. A função é lida de novo a cada
+      // refresh (invalidateOnRefresh), porque o filtro pode trocar a capa de lado.
+      x: () => (section.classList.contains('album-reverse') ? -220 : 220),
+      rotation: 360,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: true,
+        invalidateOnRefresh: true,
+      },
+    },
+  );
+};
+
 // Copia o molde do template e preenche com os dados de um álbum.
 // index é a posição do álbum na lista: 0 para o primeiro, 1 para o segundo...
 const createAlbum = (album, index) => {
@@ -69,6 +93,7 @@ const createAlbum = (album, index) => {
 
   if (!prefersReducedMotion) {
     revealOnScroll(section);
+    spinVinylOnScroll(section);
   }
 };
 
@@ -134,10 +159,14 @@ const loadAlbums = async () => {
   }
 };
 
-// O carrossel dá uma volta (360°) no eixo Y a cada 24 segundos, para sempre (repeat: -1).
-// ease: 'none' mantém a velocidade constante, sem acelerar nem frear.
-const startCarousel = () => {
-  gsap.to(carousel, { rotationY: 360, duration: 24, ease: 'none', repeat: -1 });
+// O carrossel dá uma volta (360°) enquanto o hero sai da tela.
+// scrub: 1 segue a rolagem com 1 segundo de atraso, o que suaviza o giro.
+const spinCarouselOnScroll = () => {
+  gsap.to(carousel, {
+    rotationY: 360,
+    ease: 'none',
+    scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 1 },
+  });
 };
 
 // A entrada da página: uma timeline toca as animações uma depois da outra.
@@ -164,7 +193,7 @@ filterButtons.forEach((button) => {
 // Quem pediu menos movimento vê a página pronta e o carrossel parado
 if (!prefersReducedMotion) {
   playIntro();
-  startCarousel();
+  spinCarouselOnScroll();
 }
 
 loadAlbums();
