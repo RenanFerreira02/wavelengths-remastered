@@ -32,6 +32,7 @@ Para ver o projeto como ele estava em uma etapa, use `git log --oneline` e depoi
 - `16-girando-com-a-rolagem`: `scrub` liga o vinil e o carrossel à rolagem.
 - `17-parallax-do-numero`: o número gigante anda mais devagar que a página.
 - `18-fundo-na-cor-do-album`: o JSON ganha `backgroundColor`, e callbacks do `ScrollTrigger` trocam o fundo da página.
+- `19-flip-no-filtro`: `Flip.getState` e `Flip.from` animam os álbuns até o novo lugar quando o filtro muda.
 
 ## Créditos
 

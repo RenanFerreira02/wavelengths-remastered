@@ -1,7 +1,7 @@
 // Wavelengths Remastered · os álbuns vêm do albums.json e as animações são do GSAP
 
-// Plugin do GSAP precisa ser registrado antes de usar
-gsap.registerPlugin(ScrollTrigger);
+// Plugins do GSAP precisam ser registrados antes de usar
+gsap.registerPlugin(ScrollTrigger, Flip);
 
 const albumList = document.querySelector('.album-list');
 const albumTemplate = document.querySelector('#album-template');
@@ -235,7 +235,24 @@ filterButtons.forEach((button) => {
     filterButtons.forEach((otherButton) => {
       otherButton.setAttribute('aria-pressed', String(otherButton === button));
     });
+
+    // Quem pediu menos movimento vê o filtro trocar na hora
+    if (prefersReducedMotion) {
+      showGenre(button.dataset.genre);
+      return;
+    }
+
+    // 1. Flip guarda onde cada capa e cada texto estão agora
+    const state = Flip.getState('.album-cover-wrap, .album-info');
+    // 2. O filtro muda a página de uma vez
     showGenre(button.dataset.genre);
+    // 3. Flip anima cada um de onde estava até onde ficou.
+    //    onEnter recebe quem estava escondido e apareceu agora.
+    Flip.from(state, {
+      duration: 0.7,
+      ease: 'power2.inOut',
+      onEnter: (elements) => gsap.from(elements, { opacity: 0, duration: 0.7 }),
+    });
   });
 });
 
